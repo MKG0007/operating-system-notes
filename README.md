@@ -126,3 +126,133 @@ In a **text editor**:
 - **Multithreading:** Improves efficiency by parallel execution of threads.  
 - **Thread Switching vs. Context Switching:** Thread switching is faster and lighter, while context switching is heavier and used for switching between independent processes.  
 
+
+# Components of Operating System
+
+The Operating System is divided into **User Space** and **Kernel Space**, which interact to provide services and manage hardware efficiently.  
+
+---
+
+## 1. User Space  
+- Runs **user applications** (apps, services).  
+- **No direct hardware access**.  
+- Interacts with the **kernel** for hardware operations.  
+- Provides a convenient environment for applications via:  
+  - **GUI (Graphical User Interface)** → user-friendly visuals.  
+  - **CLI (Command Line Interface)** → text-based interaction.  
+
+---
+
+## 2. Kernel  
+- Has **direct access** to hardware.  
+- Core of the OS → manages system resources.  
+- Interaction levels: **User Space → Kernel → Hardware**.  
+
+### Functions of Kernel  
+1. **Process Management**  
+   - Process creation and termination.  
+   - Process and thread scheduling.  
+   - Process synchronization and inter-process communication (IPC).  
+
+2. **Memory Management**  
+   - Allocating and deallocating memory.  
+   - Managing free space efficiently.  
+
+3. **File Management**  
+   - Creating and deleting files.  
+   - Managing directories.  
+
+4. **I/O Management**  
+   - Controlling and managing input/output devices.  
+
+---
+
+# Types of Kernel  
+
+## 1. Monolithic Kernel  
+- All OS operations are handled inside the kernel.  
+- Switching between **user mode** and **kernel mode** occurs via software interrupts.  
+- **Fast communication**, but:  
+  - Bulky kernel.  
+  - Less reliable (a crash in one service may crash the whole system).  
+
+---
+
+## 2. Microkernel  
+- Only **essential components** are inside the kernel.  
+- Non-essential services (e.g., file management, drivers) run in user space.  
+- **Advantages:** Smaller, more reliable, more stable.  
+- **Disadvantages:** Slower performance (more user ↔ kernel switching).  
+- **Example:** L4, Minix.  
+
+**Communication:**  
+- Done via **IPC (Inter-Process Communication):**  
+  - **Shared Memory:** One writes, another reads.  
+  - **Message Passing:** Separate channel created for message transfer.  
+
+---
+
+## 3. Hybrid Kernel  
+- Mix of **monolithic** and **microkernel** features.  
+- File management stays in user space, while other functions stay in kernel space.  
+- Reduces excessive switching while keeping stability.  
+- **Example:** Windows NT, macOS.  
+
+---
+
+## 4. Nano Kernel  
+- Extremely small kernel with **minimal hardware abstraction**.  
+- Almost all OS services are moved outside the kernel.  
+- Used in systems where minimalism and **security** are prioritized.  
+
+---
+
+## 5. Exo Kernel  
+- Provides **very low-level hardware access** to applications.  
+- Only manages **protection and multiplexing** of hardware resources.  
+- Leaves resource management policies to user-level programs.  
+- Allows high flexibility but requires complex design.  
+
+---
+
+# System Calls  
+
+System calls act as the **interface** between **user mode** and **kernel mode**.  
+- They enable applications to request services from the OS.  
+- Almost all system calls are implemented in **C language**.  
+
+---
+
+## Types of System Calls  
+
+1. **Process Control**  
+   - Creating and terminating processes.  
+   - Loading, executing programs.  
+   - Example: `fork()`, `exit()`, `exec()`  
+
+2. **File Management**  
+   - Creating, deleting, reading, writing files.  
+   - Example: `open()`, `read()`, `write()`, `close()`  
+
+3. **Device Management**  
+   - Requesting and releasing devices.  
+   - Performing I/O operations on devices.  
+   - Example: `ioctl()`, `read()`, `write()`  
+
+4. **Information Management**  
+   - Getting and setting system data (date, time, process info).  
+   - Example: `getpid()`, `alarm()`, `sleep()`  
+
+5. **Communication Management**  
+   - Establishing communication between processes.  
+   - Message passing, sockets, and shared memory.  
+   - Example: `pipe()`, `shmget()`, `send()`, `recv()`  
+
+---
+
+## ✅ Summary  
+- **User Space:** Runs applications without direct hardware access.  
+- **Kernel:** Core of OS with process, memory, file, and I/O management.  
+- **Kernel Types:** Monolithic (fast but bulky), Microkernel (modular but slower), Hybrid (balanced), Nano (minimalist), Exo (low-level flexibility).  
+- **System Calls:** Provide controlled interaction between user programs and the kernel for processes, files, devices, information, and communication.  
+
