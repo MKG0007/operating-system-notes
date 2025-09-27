@@ -256,3 +256,90 @@ System calls act as the **interface** between **user mode** and **kernel mode**.
 - **Kernel Types:** Monolithic (fast but bulky), Microkernel (modular but slower), Hybrid (balanced), Nano (minimalist), Exo (low-level flexibility).  
 - **System Calls:** Provide controlled interaction between user programs and the kernel for processes, files, devices, information, and communication.  
 
+
+# What Happens When We Turn On a Computer?
+
+When a computer powers on, the following sequence takes place:  
+
+---
+
+## 1. Power Distribution  
+- Electricity is distributed to all components (CPU, RAM, storage, etc.).  
+
+---
+
+## 2. CPU Loads BIOS/UEFI  
+- **BIOS (Basic Input/Output System):** Legacy firmware (older computers).  
+- **UEFI (Unified Extensible Firmware Interface):** Modern replacement for BIOS.  
+
+The CPU initializes by loading BIOS/UEFI into memory.  
+
+---
+
+## 3. Hardware Initialization  
+- BIOS/UEFI performs **POST (Power-On Self-Test)** to check hardware.  
+- Loads settings from memory backed by the **CMOS battery**.  
+
+---
+
+## 4. Boot Device Selection  
+- BIOS/UEFI identifies the **boot device** (HDD, SSD, USB, etc.).  
+- Passes control to the **boot loader** stored on the boot device.  
+
+- **Old systems:**  
+  - **MBR (Master Boot Record):** Stored at disk’s 0th sector, contains boot loader.  
+
+- **Modern systems:**  
+  - **EFI Partition:** Contains boot loader files.  
+
+---
+
+## 5. Boot Loader Loads OS  
+- Boot loader executes and loads the full operating system.  
+- Different OS use different boot loaders:  
+  - **Windows:** `bootmgr.exe`  
+  - **macOS:** `boot.efi`  
+  - **Linux:** GRUB  
+
+✅ All of these steps happen within a few seconds.  
+
+---
+
+# Difference Between 32-bit and 64-bit Operating Systems  
+
+| Feature | **32-bit OS** | **64-bit OS** |
+|---------|---------------|---------------|
+| **Addressable Memory** | 2³² locations | 2⁶⁴ locations |
+| **Instruction Width** | Processes 32-bit per CPU cycle | Processes 64-bit per CPU cycle |
+| **Resource Usage** | Limited handling of RAM and CPU | Better utilization of hardware resources |
+| **Performance** | Slower, supports ≤ 4 GB RAM | Faster, supports > 4 GB RAM |
+
+---
+
+# Types of Storage in a Computer  
+
+## 1. Primary Memory  
+- **Register:**  
+  - Smallest storage unit.  
+  - Very fast but costly.  
+- **Cache Memory:**  
+  - Stores frequently used instructions.  
+  - Increases execution speed.  
+  - Faster but expensive.  
+- **Main Memory (RAM):**  
+  - Larger capacity.  
+  - Slower and cheaper compared to registers and cache.  
+
+---
+
+## 2. Secondary Memory  
+- **Electronic Disks (SSD, Flash Storage):** Fast, durable, uses electronics.  
+- **Magnetic Disks (HDD, Floppy):** Traditional storage using magnetic fields.  
+- **Optical Disks (CD, DVD, Blu-ray):** Uses lasers for reading/writing.  
+
+---
+
+## ✅ Summary  
+- On startup, CPU loads **BIOS/UEFI**, performs **POST**, then hands over control to the **boot loader**, which loads the OS.  
+- **32-bit vs 64-bit:** 64-bit systems handle more memory, perform faster, and utilize resources better.  
+- **Storage:** Registers → Cache → RAM (fastest to slower, most expensive to cheaper), with **secondary storage** for large permanent data.  
